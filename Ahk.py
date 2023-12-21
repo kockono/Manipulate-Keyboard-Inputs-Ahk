@@ -39,10 +39,11 @@ def check_keys(key_buffer):
 def reset_key_buffer():
     key_buffer = ""
 
+# Metodo para salir del programa
 def on_release(key):
     print('{0} released'.format(
         key))
-    if key == keyboard.Key.esc:
+    if key == keyboard.Key.f10:
         # Stop listener
         return False
 
