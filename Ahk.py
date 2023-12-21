@@ -24,32 +24,20 @@ def on_press(key):
     global key_buffer
     try:
         key_buffer += key.char
-        if key_buffer in keys:
-          for i in key_buffer:
-            keyboard_controller.press(keyboard.Key.backspace)
-          keyboard_controller.type(keys[key_buffer])
-          key_buffer = ""
+        check_keys(key_buffer)
     except AttributeError:
         key_buffer = ""
         print('special key {0} pressed'.format(key))
 
-
-# def check_keys(key):
-#     global key_buffer
-#     if key == "h1":
-#       for i in key_buffer:
-#         keyboard_controller.press(keyboard.Key.backspace)
-#     key_buffer = ""
-
-
-
-# def reset_key_buffer_after_delay():
-#     global key_buffer
-#     threading.Timer(1.0, reset_key_buffer).start() 
+def check_keys(key_buffer):
+    if key_buffer in keys:
+      for i in key_buffer:
+        keyboard_controller.press(keyboard.Key.backspace)
+      keyboard_controller.type(keys[key_buffer])
+      reset_key_buffer()
 
 def reset_key_buffer():
     key_buffer = ""
-    print(key_buffer)
 
 def on_release(key):
     print('{0} released'.format(
