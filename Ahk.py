@@ -20,14 +20,19 @@ keys = {
 }
 
 
+
 def on_press(key):
     global key_buffer
     try:
+      if key.char is not None: # Si es un caracter agregalo al buffer
         key_buffer += key.char
         check_keys(key_buffer)
     except AttributeError:
         key_buffer = ""
         print('special key {0} pressed'.format(key))
+    else:
+        print('alphanumeric key {0} pressed'.format(key))
+        #code to run if no error is raised
 
 def check_keys(key_buffer):
     if key_buffer in keys:
@@ -58,9 +63,6 @@ listener = keyboard.Listener(
     on_press=on_press,
     on_release=on_release)
 listener.start()
-
-
-
 
 # def on_activate_z():
 #     keyboard.Controller.type('>')
