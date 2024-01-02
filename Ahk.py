@@ -17,7 +17,8 @@ keys = {
     "h5": "#####",
     "h6": "######",
     "zz": "<",
-    "xx": ">"
+    "xx": ">",
+    "zerok": "Dungeonerig \u00A0 Master"
 }
 
 def on_press(key):
@@ -26,9 +27,9 @@ def on_press(key):
       if key.char is not None: # Si es un caracter agregalo al buffer
         key_buffer += key.char
         check_keys(key_buffer)
-        reset_key_buffer_with_delay()
     except AttributeError:
         print('special key {0} pressed'.format(key))
+        reset_key_buffer()
     else:
         print('alphanumeric key {0} pressed'.format(key))
         #code to run if no error is raised
@@ -42,6 +43,8 @@ def check_keys(key_buffer_final):
 
 def type_characters(key_buffer_final):
     keyboard_controller.type(keys[key_buffer_final])
+    reset_key_buffer_with_delay()
+
 
 def delete_characters(key_buffer_final):
       for i in key_buffer_final:
