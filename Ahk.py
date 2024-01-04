@@ -53,7 +53,7 @@ def check_keys(key_buffer_final):
             type_characters(extracted_key)
             reset_key_buffer()
 
-
+hola como estas
 def type_characters(key_buffer_final):
     # keyboard_controller.type(keys[key_buffer_final])
     # reset_key_buffer_with_delay()
@@ -62,7 +62,7 @@ def type_characters(key_buffer_final):
         keyboard_controller.press(char)
         keyboard_controller.release(char)
         if char.isspace():
-          keyboard_controller.type(' ')
+           keyboard_controller.press(keyboard.Key.space)
     reset_key_buffer_with_delay()
 
 def delete_characters(key_buffer_final):
