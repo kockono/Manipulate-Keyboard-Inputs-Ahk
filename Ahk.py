@@ -1,5 +1,7 @@
 from pynput import keyboard
 import threading
+import re
+
 # from pynput.keyboard import Key, Controller
 
 # Crea una instancia del controlador de teclado
@@ -35,27 +37,13 @@ def on_press(key):
         #code to run if no error is raised
 
 def check_keys(key_buffer_final):
-    print(key_buffer_final)
-    initial_letter, suffix = extract_suffix(key_buffer_final)
-    if initial_letter is not None and suffix is not None:
-        combined_key = initial_letter + suffix
-        if combined_key in keys:
-            delete_characters(key_buffer_final)
-            type_characters(key_buffer_final)
+    for key, value in keys.items():
+        if key_buffer_final.endswith(key):
+            extracted_key = re.search(rf'{key}$', key_buffer_final).group()
+            delete_characters(extracted_key)
+            type_characters(extracted_key)
             reset_key_buffer()
 
-def extract_suffix(key_buffer):
-    # Encuentra la primera letra en el buffer
-    first_letter_index = next((i for i, c in enumerate(key_buffer) if c.isalpha()), None)
-    
-    if first_letter_index is not None:
-        # Extrae la letra inicial y el sufijo numérico
-        initial_letter = key_buffer[first_letter_index]
-        suffix = key_buffer[first_letter_index + 1:]
-
-        return initial_letter, suffix
-
-    return None, None
 
 def type_characters(key_buffer_final):
     keyboard_controller.type(keys[key_buffer_final])
@@ -81,7 +69,6 @@ def on_release(key):
     if key == keyboard.Key.f10:
         # Stop listener
         return False
-
 
 # Collect events until released
 with keyboard.Listener(
