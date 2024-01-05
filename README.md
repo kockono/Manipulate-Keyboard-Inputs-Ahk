@@ -1,20 +1,19 @@
-
 ## DEPENDENCIES
 - **python 3.11**
 - **pynput**
 - **threading**
 
-### Rrequirements
+### Requirements
 ```bash
 pip install -r requirements.txt
 ```
 
-### keyboard
+##### keyboard
 ```bash
 pip3 install keyboard
 ```
 
-### pyautogui
+#####  pyautogui
 ```bash
 pip3 install pyautogui
 ```
@@ -37,4 +36,4 @@ sudo yum install libXtst-devel libpng++-devel
 ## Windows
 ```bash
 npm install --global --production windows-build-tools
-```# Input-Keyboard-Ahk
+```
