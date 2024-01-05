@@ -69,14 +69,3 @@ listener = keyboard.Listener(
     on_press=on_press,
     on_release=on_release)
 listener.start()
-
-# def on_activate_z():
-#     keyboard.Controller.type('>')
-
-# def on_activate_i():
-#     keyboard.Controller.type('<')
-
-# with keyboard.GlobalHotKeys({
-#         '<shift>+z': on_activate_z,
-#         '<alt>+z': on_activate_i}) as h:
-#     h.join()

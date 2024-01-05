@@ -2,25 +2,21 @@
 - **python 3.11**
 - **pynput**
 - **threading**
+- **regex**
 
 ## Requirements
 ```bash
 pip install -r requirements.txt
 ```
 
-##### keyboard
-```bash
-pip3 install keyboard
-```
-
-#####  pyautogui
-```bash
-pip3 install pyautogui
-```
-
 ## Mac
+###### 1.Install Xcode
 ```bash
 xcode-select --install
+```
+###### 2.Accept Xcode license
+```bash
+sudo xcodebuild -license accept
 ```
 
 ## Debian Ubuntu
