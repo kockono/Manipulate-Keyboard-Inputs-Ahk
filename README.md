@@ -1,4 +1,4 @@
-## DEPENDENCIES
+## Dependencies
 - **python 3.11**
 - **pynput**
 - **threading**
