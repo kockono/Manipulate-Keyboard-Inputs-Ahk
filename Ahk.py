@@ -19,15 +19,7 @@ keys = {
     "h7": "hola\u0020como estas",
     "zx": "<",
     "obs": """
-          const subscription:\f Subscription = interval(1000).subscribe((num: number) => {
-            console.log(num);
-          });
-
-          // Cancelar la suscripción después de 5 segundos
-          setTimeout(() => {
-            subscription.unsubscribe();
-            console.log('Suscripción cancelada');
-          }, 5000);""",
+          const subscription: Subscription = interval(1000).subscribe((num: number) => console.log(num) );""",
     "xz": ">",
     "azael": "Dungeonerig   Master"
 }
