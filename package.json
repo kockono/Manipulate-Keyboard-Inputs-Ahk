@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "keypress": "^0.2.1",
-    "robotjs": "^0.6.0"
-  }
-}

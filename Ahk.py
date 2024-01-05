@@ -1,28 +1,13 @@
 from pynput import keyboard # Para escuchar las teclas presionadas
 import threading # Para crear un hilo que ejecute una función cada cierto tiempo
 import re # Para usar expresiones regulares
+from keys_dict import keys # Importa el diccionario de teclas
 
 # Crea una instancia del controlador de teclado
 keyboard_controller = keyboard.Controller()
 
 # Variables
 key_buffer = ""
-
-# Diccionario de teclas
-keys = {
-    "h1": "#",
-    "h2": "##",
-    "h3": "###",
-    "h4": "####",
-    "h5": "#####",
-    "h6": "######",
-    "h7": "hola\u0020como estas",
-    "zx": "<",
-    "obs": """
-          const subscription: Subscription = interval(1000).subscribe((num: number) => console.log(num) );""",
-    "xz": ">",
-    "azael": "Dungeonerig   Master"
-}
 
 def on_press(key):
     global key_buffer
@@ -45,10 +30,7 @@ def check_keys(key_buffer_final):
             type_characters(extracted_key)
             reset_key_buffer()
 
-
 def type_characters(key_buffer_final):
-    # keyboard_controller.type(keys[key_buffer_final])
-    # reset_key_buffer_with_delay()
     text_to_type = keys[key_buffer_final]
     for char in text_to_type:
         keyboard_controller.press(char)
