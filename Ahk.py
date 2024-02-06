@@ -1,7 +1,7 @@
 from pynput import keyboard # Para escuchar las teclas presionadas
 import threading # Para crear un hilo que ejecute una función cada cierto tiempo
 import re # Para usar expresiones regulares
-from keys_dict import keys # Importa el diccionario de teclas
+from keys_dict import keys, special_keys # Importa el diccionario de teclas
 
 # Crea una instancia del controlador de teclado
 keyboard_controller = keyboard.Controller()
@@ -14,40 +14,53 @@ def on_press(key):
     try:
       if key.char is not None: # Si es un caracter agregalo al buffer
         key_buffer += key.char
-        if key_buffer.startswith('Ctrl+l'):
-          print('X')
-          reset_key_buffer()
-        check_keys(key_buffer)
+        check_normal_keys(key_buffer)
     except AttributeError:
-        if key == keyboard.Key.cmd_l:
-            print('Cmd pressed')
-            key_buffer += 'Ctrl+'
-        if key == keyboard.Key.ctrl_l:
-            print('Ctrl pressed')
-            key_buffer += 'Ctrl+'
-        elif key == keyboard.Key.alt_l:
-            print('Alt pressed')
-            key_buffer += 'Alt+'
-        elif key == keyboard.Key.shift:
-            print('Shift pressed')
-            key_buffer += 'Shift+'
-        print('special key {0} pressed'.format(key))
-        reset_key_buffer()
-    else:
-        print('alphanumeric key {0} pressed'.format(key))
-        #code to run if no error is raised
+      check_special_keys(key)
 
-def check_keys(key_buffer_final):
-    if key_buffer_final == 'Ctrl+T':
-      print("Realizando acción para Ctrl + T")
+
+def check_special_keys(key):
+  global key_buffer
+  if key == keyboard.Key.cmd_l:
+      print('Cmd pressed')
+      key_buffer += 'Ctrl+'
+  if key == keyboard.Key.ctrl_l:
+      print('Ctrl pressed')
+      key_buffer += 'Ctrl+'
+  elif key == keyboard.Key.alt_l:
+      print('Alt pressed')
+      key_buffer += 'Alt+'
+  elif key == keyboard.Key.shift:
+      print('Shift pressed')
+      key_buffer += 'Shift+'
+  else:
+    print('special key {0} pressed'.format(key))
+    reset_key_buffer()
+
+def check_normal_keys(key_buffer_final):
+    for key, value in special_keys.items():
+        if key_buffer_final.endswith(key):
+            type_special_characters(key_buffer_final)
+            reset_key_buffer()
+
     for key, value in keys.items():
         if key_buffer_final.endswith(key):
             extracted_key = re.search(rf'{key}$', key_buffer_final).group()
             delete_characters(extracted_key)
-            type_characters(extracted_key)
+            type_normal_characters(extracted_key)
             reset_key_buffer()
 
-def type_characters(key_buffer_final):
+def type_special_characters(key_buffer_final):
+    text_to_type = special_keys[key_buffer_final]
+    # if check_caps_lock():
+    for char in text_to_type:
+        keyboard_controller.press(char)
+        keyboard_controller.release(char)
+        if char.isspace():
+          keyboard_controller.press(keyboard.Key.space)
+    reset_key_buffer_with_delay()
+
+def type_normal_characters(key_buffer_final):
     text_to_type = keys[key_buffer_final]
     # if check_caps_lock():
     for char in text_to_type:
