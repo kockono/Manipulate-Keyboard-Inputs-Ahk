@@ -5,8 +5,7 @@ keys = {
     "h4": "####",
     "h5": "#####",
     "h6": "######",
-    "Z": ">",
-    "Ω": "<",
+    "Ω" : ">",
     "exportpcm": "POSTGRESCONNECTIONSTRING='Host=10.19.5.100;Database=postgres;Username=postgres;Password=30083008;Pooling=false;Timeout=300;CommandTimeout=300'",
     "exportpce": "POSTGRESCONNECTIONSTRING='Host=10.19.5.100;Database=postgres;Username=postgres;Password=30083008;Pooling=false;Timeout=300;CommandTimeout=300'",
     "exportraven": "RAVENDB_URL = \"http://10.19.5.41:8082/\"",
@@ -15,5 +14,5 @@ keys = {
 }
 
 special_keys = {
-    "Ctrl+t": "Hola",
+    "Shift+Z": "<",
 }

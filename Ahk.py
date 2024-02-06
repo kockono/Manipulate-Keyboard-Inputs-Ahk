@@ -38,10 +38,10 @@ def check_special_keys(key):
     reset_key_buffer()
 
 def check_normal_keys(key_buffer_final):
-    # for key, value in special_keys.items():
-    #     if key_buffer_final.endswith(key):
-    #         type_special_characters(key_buffer_final)
-    #         reset_key_buffer()
+    for key, value in special_keys.items():
+        if key_buffer_final.endswith(key):
+            type_special_characters(key_buffer_final)
+            reset_key_buffer()
 
     for key, value in keys.items():
         if key_buffer_final.endswith(key):
