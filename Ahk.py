@@ -40,6 +40,7 @@ def check_special_keys(key):
 def check_normal_keys(key_buffer_final):
     for key, value in special_keys.items():
         if key_buffer_final.endswith(key):
+            keyboard_controller.press(keyboard.Key.backspace)
             type_special_characters(key_buffer_final)
             reset_key_buffer()
 
