@@ -8,15 +8,19 @@ keyboard_controller = keyboard.Controller()
 
 # Variables
 key_buffer = ""
-
+"""_summary_
+    Este script escucha las teclas presionadas y las compara con un diccionario de teclas especiales y normales.
+"""
 def on_press(key):
     global key_buffer
     try:
       if key.char is not None: # Si es un caracter agregalo al buffer
+        print(key.char)
         key_buffer += key.char
         check_normal_keys(key_buffer)
     except AttributeError:
-      check_special_keys(key)
+      reset_key_buffer()
+      # check_special_keys(key)
 
 
 def check_special_keys(key):
@@ -38,11 +42,11 @@ def check_special_keys(key):
     reset_key_buffer()
 
 def check_normal_keys(key_buffer_final):
-    for key, value in special_keys.items():
-        if key_buffer_final.endswith(key):
-            keyboard_controller.press(keyboard.Key.backspace)
-            type_special_characters(key_buffer_final)
-            reset_key_buffer()
+    # for key, value in special_keys.items():
+    #     if key_buffer_final.endswith(key):
+    #         keyboard_controller.press(keyboard.Key.backspace)
+    #         type_special_characters(key_buffer_final)
+    #         reset_key_buffer()
 
     for key, value in keys.items():
         if key_buffer_final.endswith(key):
