@@ -1,3 +1,5 @@
+![Inputs](https://github.com/kockono/Manipulate-Keyboard-Inputs-Ahk/assets/55373948/c7fe6d6d-81a2-4599-8102-00a0d9260c9d)
+
 ## Dependencies
 - **python 3.11**
 - **pynput**
