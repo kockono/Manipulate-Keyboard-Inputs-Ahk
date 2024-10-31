@@ -3,6 +3,8 @@
 - **pynput**
 - **threading**
 - **regex**
+**Note:** Usar bash en lugar de zsh
+
 
 ## Requirements
 ```bash
